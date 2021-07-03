@@ -499,7 +499,7 @@ void GUI::renderProfileChangerWindow(bool contentOnly) noexcept
     }
     if (!config->profilechanger.hooked) {
         ImGui::Text("Using this feature may lead to longer than expected matchmaking queues, continue?");
-        if (ImGui::Button("Run")
+        if (ImGui::Button("Run"))
             hooks->hookGC();
     }
     else {
