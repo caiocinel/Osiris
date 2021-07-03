@@ -577,6 +577,17 @@ static void swapWindow(SDL_Window* window) noexcept
 
 #endif
 
+void Hooks::hookGC() noexcept
+{
+#ifdef _WIN32
+    gc_hook.setup(memory->SteamGameCoordinator);
+    gc_hook.hook_index(2, hkGCRetrieveMessage);
+    config->globals.profileChangerHook = true;
+#else
+    return;
+#endif
+}
+
 void Hooks::install() noexcept
 {
 #ifdef _WIN32
