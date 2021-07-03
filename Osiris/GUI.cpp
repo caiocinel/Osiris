@@ -25,6 +25,7 @@
 #include "Hacks/InventoryChanger.h"
 #include "Helpers.h"
 #include "Interfaces.h"
+#include "Hooks.h"
 #include "SDK/InputSystem.h"
 #include "Hacks/Visuals.h"
 #include "Hacks/Glow.h"
@@ -498,7 +499,7 @@ void GUI::renderProfileChangerWindow(bool contentOnly) noexcept
     }
     if (!config->profilechanger.hooked) {
         ImGui::Text("Using this feature may lead to longer than expected matchmaking queues, continue?");
-        if (ImGui::Button("Run"))
+        if (ImGui::Button("Run")
             hooks->hookGC();
     }
     else {
