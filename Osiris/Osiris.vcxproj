@@ -118,6 +118,7 @@
     <ClCompile Include="Hacks\EnginePrediction.cpp" />
     <ClCompile Include="Hacks\Glow.cpp" />
     <ClCompile Include="Hacks\InventoryChanger.cpp" />
+    <ClCompile Include="Hacks\ProfileChanger.cpp" />
     <ClCompile Include="Hacks\Sound.cpp" />
     <ClCompile Include="Hacks\StreamProofESP.cpp" />
     <ClCompile Include="Hacks\Triggerbot.cpp" />
@@ -207,6 +208,7 @@
     <ClInclude Include="Hacks\Glow.h" />
     <ClInclude Include="Hacks\InventoryChanger.h" />
     <ClInclude Include="Hacks\Misc.h" />
+    <ClInclude Include="Hacks\ProfileChanger.h" />
     <ClInclude Include="Hacks\Sound.h" />
     <ClInclude Include="Hacks\StreamProofESP.h" />
     <ClInclude Include="Hacks\Triggerbot.h" />
@@ -274,6 +276,7 @@
     <ClInclude Include="SDK\Material.h" />
     <ClInclude Include="SDK\MaterialSystem.h" />
     <ClInclude Include="SDK\matrix3x4.h" />
+    <ClInclude Include="SDK\MemAlloc.h" />
     <ClInclude Include="SDK\ModelInfo.h" />
     <ClInclude Include="SDK\ModelRender.h" />
     <ClInclude Include="SDK\MoveHelper.h" />

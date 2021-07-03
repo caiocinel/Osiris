@@ -59,6 +59,7 @@ public:
     HookType modelRender;
     HookType panoramaMarshallHelper;
     HookType sound;
+    HookType gc_hook;
     HookType surface;
     HookType viewRender;
     HookType svCheats;

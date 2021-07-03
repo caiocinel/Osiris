@@ -620,8 +620,7 @@ void GUI::renderProfileChangerWindow(bool contentOnly) noexcept
         ImGui::InputInt("##Leader", &config->profilechanger.leader);
         ImGui::Columns(1);
         ImGui::Spacing();
-
-
+        
 
         if (ImGui::Button("Apply", ImVec2(-1.0f, 0.0f)))
         {

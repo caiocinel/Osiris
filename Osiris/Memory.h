@@ -28,6 +28,8 @@ template <typename T> class SharedObjectTypeCache;
 class ViewRender;
 class ViewRenderBeams;
 class WeaponSystem;
+class MemAlloc;
+class ISteamClient;
 template <typename Key, typename Value>
 struct UtlMap;
 template <typename T>
@@ -89,6 +91,9 @@ public:
     KeyValues*(__THISCALL* keyValuesFindKey)(KeyValues* keyValues, const char* keyName, bool create);
     void(__THISCALL* keyValuesSetString)(KeyValues* keyValues, const char* value);
     WeaponSystem* weaponSystem;
+    MemAlloc* memAlloc;
+    ISteamGameCoordinator* SteamGameCoordinator;
+    ISteamUser* SteamUser;
     std::add_pointer_t<const char** __FASTCALL(const char* playerModelName)> getPlayerViewmodelArmConfigForPlayerModel;
     GameEventDescriptor* (__THISCALL* getEventDescriptor)(GameEventManager* _this, const char* name, int* cookie);
     ActiveChannels* activeChannels;

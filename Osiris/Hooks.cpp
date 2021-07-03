@@ -44,6 +44,7 @@
 #include "Hacks/Sound.h"
 #include "Hacks/Triggerbot.h"
 #include "Hacks/Visuals.h"
+#include "Hacks/ProfileChanger.h"
 
 #include "SDK/ClientClass.h"
 #include "SDK/Cvar.h"
@@ -66,6 +67,7 @@
 #include "SDK/StudioRender.h"
 #include "SDK/Surface.h"
 #include "SDK/UserCmd.h"
+#include "SDK/Steam.h"
 
 #ifdef _WIN32
 
@@ -525,6 +527,27 @@ Hooks::Hooks(HMODULE moduleHandle) noexcept : moduleHandle{ moduleHandle }
 
     window = FindWindowW(L"Valve001", nullptr);
     originalWndProc = WNDPROC(SetWindowLongPtrW(window, GWLP_WNDPROC, LONG_PTR(&wndProc)));
+}
+
+using GCRetrieveMessage = EGCResult(__thiscall*)(void*, uint32_t* punMsgType, void* pubDest, uint32_t cubDest, uint32_t* pcubMsgSize);
+using GCSendMessage = EGCResult(__thiscall*)(void*, uint32_t unMsgType, const void* pubData, uint32_t cubData);
+EGCResult __fastcall hkGCRetrieveMessage(void* ecx, void*, uint32_t* punMsgType, void* pubDest, uint32_t cubDest, uint32_t* pcubMsgSize)
+{
+
+    static auto oGCRetrieveMessage = hooks->gc_hook.getOriginal<GCRetrieveMessage>(2);
+    auto status = oGCRetrieveMessage(ecx, punMsgType, pubDest, cubDest, pcubMsgSize);
+
+    if (status == k_EGCResultOK)
+    {
+
+        void* thisPtr = nullptr;
+        __asm mov thisPtr, ebx;
+        auto oldEBP = *reinterpret_cast<void**>((uint32_t)_AddressOfReturnAddress() - 4);
+
+        uint32_t messageType = *punMsgType & 0x7FFFFFFF;
+        profile_changer::receive_message(thisPtr, oldEBP, messageType, pubDest, cubDest, pcubMsgSize);
+    }
+    return status;
 }
 
 #else
