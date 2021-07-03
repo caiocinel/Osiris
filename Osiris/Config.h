@@ -106,6 +106,23 @@ public:
         ImFont* medium;
         ImFont* big;
     };
+
+    struct profileChanger {
+        int hooked{ false };
+        int friendly = 0;
+        int teach = 0;
+        int leader = 0;
+        int level = 0;
+        int exp = 0;
+        int ban_type = 0;
+        int ban_time = 0;
+        int winsMatchmaking = 0;
+        int rankMatchmaking = 0;
+        int winsWingman = 0;
+        int rankWingman = 0;
+        int winsDangerzone = 0;
+        int rankDangerzone = 0;
+    } profilechanger;
    
     struct Style {
         int menuStyle{ 0 };
